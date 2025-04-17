@@ -46,3 +46,14 @@ Test your new function; I've provided some basic testing code in `code.test.js`.
 What is the worst-case asymptotic time complexity of your implementation? What
 is the worst-case asymptotic memory complexity? Add your answer, including your
 reasoning, to this markdown file.
+
+Because we are using memoization, in the worst case we would have to process almost 
+every element in the superset of the graph once and only once. We are only calling 
+the function for almost every subset of the graph because we stop at subsets with a 
+length of 2. The superset of a graph in this case would contain $2^{|V|}$ elements. 
+Even though we stop short, that won't impact the complexity because asymptotically, 
+a very small part of the superset is being excluded. During each call, my implementation
+gets a trimmed version of the graph that doesn't have the start vertex in it. Because 
+the graoh needs to stay in tact for future calls, a deep copy of the graph is made, which
+means that all $|V|^2$ of the adjacency matrix have to be copied. Therefore, the final time 
+complexity is going to be $\Theta(2^{|V|} \cdot |V|^2)$. 
