@@ -70,6 +70,20 @@ However, the recursive stack can only go $|V|$ calls deep because a vertex is re
 Therefore, this will not impact the complexity, so we will still have a memory complexity of 
 $\Theta(2^{|V|} \cdot |V|^2)$.
 
+### Analysis after changes
+
+After being told that I didn't take into account the same subset of elements with a different 
+order, I wanted to make cities easier to sort, I decided to only store the cities in the cache
+instead of the entire graph like before. As a result, the memory complexity was reduced to 
+$\Theta(2^{|V|} \cdot |V|)$.
+
+Initially, I thought that the time complexity would also be reduced, but as I was debugging my
+revision, I realized that the function is not called roughly $2^{|V|}$ times with unique arguments, 
+but actually closer to $2^{|V|} \cdot |V|$ times. This is because each unique value in the cache also 
+includes the maximum of $|V|$ start nodes and a function call has to be made for each one. The for loop 
+inside the function also has a complexity of $|V|$. Therefore, there will still be a time complexity of 
+$\Theta(2^{|V|} \cdot |V|^2)$, even if my original analysis was at least partially incorrect. 
+
 ## Extra Help 
 
 I used the memoization solution for the knapsack problem on the slides to help me figure out how 
